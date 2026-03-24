@@ -1,0 +1,283 @@
+.container {
+  padding: 3rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6b7280;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+
+.backBtn:hover {
+  color: var(--primary-color);
+}
+
+.header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2.5rem;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.patientInfo h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.25rem;
+}
+
+.patientInfo p {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.legend {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #334155;
+}
+
+.swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.mappingArea {
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dentalChartWrapper {
+  width: 100%;
+  max-width: 550px;
+  aspect-ratio: 1; /* Square */
+  position: relative;
+  background-image: url('/images/realistic_dental_chart.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  border: 1px solid #1e293b;
+}
+
+.toothDot {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  transform: translate(-50%, -50%); /* Perfectly center the dot accurately */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2) inset, 0 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 2px solid white;
+}
+
+.toothDot:hover {
+  transform: translate(-50%, -50%) scale(1.35);
+  z-index: 10;
+}
+
+.healthy { background-color: rgba(116, 195, 141, 0.85); color: white; }
+.watch { background-color: rgba(251, 211, 79, 0.95); color: #78350f; }
+.critical { background-color: rgba(239, 83, 80, 0.95); color: white; }
+
+/* Tooth Modal Styles */
+.toothModalHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.toothBadge {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: 12px;
+  flex-shrink: 0;
+  margin-right: 0.5rem;
+}
+
+.toothTitleText {
+  display: flex;
+  flex-direction: column;
+}
+
+.toothTitleText span {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.toothTitleText small {
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+.toothModalContent {
+  padding-top: 0.5rem;
+}
+
+.toothStatusRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1.5rem;
+}
+
+.lastVisit {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.historySection {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle span {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #94a3b8;
+  margin-left: 0.5rem;
+}
+
+.historyBox {
+  background-color: #f8fafc;
+  border-radius: 10px;
+  padding: 1.25rem;
+  border: 1px solid #f1f5f9;
+}
+
+.historyBox ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.historyBox li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: #334155;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.historyBox li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+}
+
+.notesArea {
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.25rem;
+  background-color: #f0f7ff;
+  color: #334155;
+  resize: none;
+  min-height: 120px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.notesArea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.characterCount {
+  display: block;
+  text-align: right;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+}
+
+.toothActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.toothActions button {
+  flex: 1;
+}
