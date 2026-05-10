@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  background-color: #f4f7fb;
+  background-color: var(--background-color);
   min-height: 100vh;
 }
 
@@ -22,17 +22,17 @@
 }
 
 .title {
-  font-size: 3.5rem;
+  font-size: 3.75rem;
   font-weight: 800;
-  color: #111827;
+  color: var(--text-primary);
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  letter-spacing: -1px;
+  letter-spacing: -1.5px;
 }
 
 .subtitle {
-  font-size: 1.125rem;
-  color: #4b5563;
+  font-size: 1.15rem;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 2.5rem;
 }
@@ -174,15 +174,16 @@
 }
 
 .featuresHeader h2 {
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   font-weight: 800;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 1rem;
+  letter-spacing: -1px;
 }
 
 .featuresHeader p {
-  font-size: 1.125rem;
-  color: #6b7280;
+  font-size: 1.15rem;
+  color: var(--text-secondary);
 }
 
 .featureGrid {
@@ -194,16 +195,17 @@
 }
 
 .featureCard {
-  background: white;
-  border-radius: 16px;
+  background: var(--surface-color);
+  border-radius: 20px;
   overflow: hidden;
   border: 1px solid var(--border-color);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .featureCard:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
 
 .cardImagePlaceholder1 {

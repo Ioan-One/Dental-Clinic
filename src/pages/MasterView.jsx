@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Edit2, Trash2, Eye, CalendarClock } from 'lucide-react';
+import { Plus, Edit2, Trash2, Eye, CalendarClock, WifiOff, Play, Square } from 'lucide-react';
 import { useData } from '../store/DataStore';
 import { validateAppointment } from '../services/ValidationService';
 import Table from '../components/Table';
 import Badge from '../components/Badge';
 import Modal from '../components/Modal';
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import styles from './MasterView.module.css';
 
 export default function MasterView() {
-  const { appointments, addAppointment, updateAppointment, deleteAppointment } = useData();
+  const { appointments, addAppointment, updateAppointment, deleteAppointment, isOffline } = useData();
   const navigate = useNavigate();
   
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,6 +57,14 @@ export default function MasterView() {
     }
   };
 
+  const handleStartFaker = async () => {
+    await fetch('http://localhost:3001/api/generate/start', { method: 'POST' }).catch(() => {});
+  };
+  
+  const handleStopFaker = async () => {
+    await fetch('http://localhost:3001/api/generate/stop', { method: 'POST' }).catch(() => {});
+  };
+
   const columns = [
     { header: 'ID Programare', accessor: 'id', render: (row) => <span className={styles.idText}>{row.id}</span> },
     { header: 'Pacient', accessor: 'patientName' },
@@ -84,7 +93,7 @@ export default function MasterView() {
       <button className={styles.actionBtn} onClick={() => handleOpenModal(row)} title="Editează">
         <Edit2 size={16} />
       </button>
-      <button className={styles.actionBtn} onClick={() => navigate(`/patient/${row.patientId}`)} title="Vezi Detalii">
+      <button className={styles.actionBtn} onClick={() => navigate(`/patient/${row.id}`)} title="Vezi Detalii">
         <Eye size={16} />
       </button>
       <button className={`${styles.actionBtn} ${styles.deleteBtn}`} onClick={() => handleDelete(row.id)} title="Șterge">
@@ -93,24 +102,82 @@ export default function MasterView() {
     </>
   );
 
+  // Chart Logic
+  const chartData = useMemo(() => {
+    const counts = { confirmed: 0, pending: 0, completed: 0, cancelled: 0 };
+    appointments.forEach(apt => {
+        if(counts[apt.status] !== undefined) counts[apt.status]++;
+    });
+    return Object.entries(counts).map(([status, count]) => ({
+        name: status,
+        value: count
+    })).filter(item => item.value > 0);
+  }, [appointments]);
+
+  const COLORS = ['#10b981', '#f59e0b', '#3b82f6', '#ef4444'];
+
   return (
     <div className={styles.container}>
+      {isOffline && (
+        <div style={{ backgroundColor: '#fee2e2', color: '#b91c1c', padding: '10px 15px', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '20px', fontWeight: '500' }}>
+            <WifiOff size={18} /> Rețea Deconectată. Setările vor fi sincronizate ulterior cu serverul.
+        </div>
+      )}
+
       <div className={styles.header}>
         <div>
           <h1 className={styles.title}>Managementul Programărilor</h1>
           <p className={styles.subtitle}>Programare inteligentă cu management Soft-Lock al intervalelor și notificări automate</p>
         </div>
-        <button className="btn btn-primary" onClick={() => handleOpenModal()}>
-          <Plus size={20} /> Programare Nouă
-        </button>
+        
+        <div className={styles.headerActions}>
+            <button className="btn btn-outline" onClick={handleStartFaker} title="Start Faker WebSocket">
+                <Play size={16} /> Pornire Generare Date (Faker)
+            </button>
+            <button className="btn btn-outline" onClick={handleStopFaker} title="Stop Faker">
+                <Square size={16} /> Oprire
+            </button>
+            <button className="btn btn-primary" onClick={() => handleOpenModal()}>
+                <Plus size={20} /> Programare Nouă
+            </button>
+        </div>
       </div>
 
-      <Table 
-        columns={columns} 
-        data={appointments} 
-        itemsPerPage={5} 
-        renderRowActions={renderActions} 
-      />
+      <div className={styles.mainContent}>
+          <div className={styles.chartContainer}>
+              <h3 className={styles.chartTitle}>Status Programări</h3>
+              <div style={{ flex: 1, minHeight: 0 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart margin={{ top: 0, right: 0, bottom: 20, left: 0 }}>
+                    <Pie
+                      data={chartData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius="55%"
+                      outerRadius="80%"
+                      paddingAngle={5}
+                      dataKey="value"
+                    >
+                      {chartData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend wrapperStyle={{ paddingTop: '10px' }} />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+          </div>
+
+          <div className={styles.tableContainer}>
+              <Table 
+                columns={columns} 
+                data={appointments} 
+                itemsPerPage={5} 
+                renderRowActions={renderActions} 
+              />
+          </div>
+      </div>
 
       <Modal 
         isOpen={isModalOpen} 
@@ -118,7 +185,7 @@ export default function MasterView() {
         title={editingApt ? "Editează Programarea" : "Programare Nouă"}
       >
         <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.formGroup}>
+           <div className={styles.formGroup}>
             <label>Nume Pacient</label>
             <input 
               type="text" 

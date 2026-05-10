@@ -128,3 +128,48 @@
   padding-top: 1.5rem;
   border-top: 1px solid #e5e7eb;
 }
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.tableContainer {
+  width: 100%;
+}
+
+.chartContainer {
+  width: 100%;
+  max-width: 500px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chartTitle {
+  margin: 0 0 16px 0;
+  color: #1e293b;
+}
+
+.headerActions {
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .headerActions {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}

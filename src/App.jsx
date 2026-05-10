@@ -3,11 +3,13 @@ import LandingPage from './pages/LandingPage';
 import MasterView from './pages/MasterView';
 import DetailView from './pages/DetailView';
 import Navbar from './components/Navbar';
+import CookieTracker from './components/CookieTracker';
 import './App.css';
 
 function App() {
   return (
     <Router>
+      <CookieTracker />
       <div className="app-container">
         <Navbar />
         <main className="main-content">
