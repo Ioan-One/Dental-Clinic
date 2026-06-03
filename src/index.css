@@ -104,3 +104,11 @@ button {
 .badge-info { background-color: #e0f2fe; color: #075985; }
 .badge-warning { background-color: #fef3c7; color: #92400e; }
 .badge-danger { background-color: #fee2e2; color: #991b1b; }
+
+/* ── Mobile globals ── */
+@media (max-width: 640px) {
+  .btn {
+    min-height: 44px;
+    font-size: 0.9rem;
+  }
+}

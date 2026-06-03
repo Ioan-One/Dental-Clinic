@@ -1,0 +1,666 @@
+/* ── CalendarView — Premium Calendar Styles ── */
+
+.container {
+  padding: 2rem 3rem;
+  max-width: 1500px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.headerLeft {
+  flex: 1;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* Doctor selector */
+.doctorSelect {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6b7280;
+}
+
+.doctorSelect select {
+  padding: 0.55rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: white;
+  outline: none;
+  cursor: pointer;
+  min-width: 250px;
+  transition: border-color 0.2s;
+}
+
+.doctorSelect select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* ── Toolbar ── */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.navGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navBtn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  color: #374151;
+  transition: all 0.15s;
+}
+
+.navBtn:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  color: var(--primary-color);
+}
+
+.todayBtn {
+  padding: 0.4rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  transition: all 0.15s;
+}
+
+.todayBtn:hover {
+  background: #eff6ff;
+  border-color: var(--primary-color);
+}
+
+.rangeLabel {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-left: 0.5rem;
+}
+
+.viewToggle {
+  display: flex;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.viewBtn {
+  padding: 0.45rem 1.1rem;
+  border: none;
+  background: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.viewBtn:not(:last-child) {
+  border-right: 1px solid #e5e7eb;
+}
+
+.viewBtn:hover {
+  background: #f9fafb;
+  color: var(--primary-color);
+}
+
+.viewBtnActive {
+  background: var(--primary-color);
+  color: white;
+}
+
+.viewBtnActive:hover {
+  background: var(--primary-hover);
+  color: white;
+}
+
+/* Doctor info banner */
+.doctorBanner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+  color: #1e40af;
+  font-size: 0.9rem;
+}
+
+.spec {
+  font-weight: 400;
+  color: #3b82f6;
+}
+
+/* Loading bar */
+.loadingBar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
+  background-size: 200% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ══════════════════════════════════════════════
+   WEEK VIEW — CSS Grid
+   ══════════════════════════════════════════════ */
+
+/* Scroll container — provides border-radius, shadow, and vertical scroll */
+.weekGridWrapper {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden auto;
+  max-height: 620px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.weekGrid {
+  display: grid;
+  grid-template-columns: 60px repeat(5, 1fr);
+  background: white;
+}
+
+.cornerCell {
+  background: #f8fafc;
+  border-bottom: 2px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 11;
+}
+
+.dayHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0.5rem;
+  background: #f8fafc;
+  border-bottom: 2px solid #e2e8f0;
+  border-right: 1px solid #f1f5f9;
+  gap: 0.15rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.dayHeader:last-child {
+  border-right: none;
+}
+
+.dayHeaderToday {
+  background: #eff6ff;
+}
+
+.dayLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dayNumber {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #374151;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.dayNumberToday {
+  background: var(--primary-color);
+  color: white;
+}
+
+.timeCell {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 2px 8px 0 0;
+  border-right: 1px solid #e2e8f0;
+  border-bottom: 1px solid #f1f5f9;
+  min-height: 32px;
+  background: #fafbfc;
+}
+
+.timeLabel {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #9ca3af;
+  transform: translateY(-6px);
+}
+
+.slotCell {
+  border-bottom: 1px solid #f3f4f6;
+  border-right: 1px solid #f3f4f6;
+  min-height: 32px;
+  padding: 1px 2px;
+  position: relative;
+  transition: background 0.12s;
+}
+
+.slotCell:nth-child(6n+1) {
+  /* re-enforce time column */
+}
+
+.slotCell:last-child {
+  border-right: none;
+}
+
+.slotHour {
+  border-bottom-color: #e5e7eb;
+}
+
+.slotPast {
+  background: #fafafa;
+}
+
+.slotCell:hover {
+  background: #f0f9ff;
+}
+
+/* ── Current time indicator ── */
+.timeNow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ef4444;
+  z-index: 4;
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+.timeNow::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  background: #ef4444;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px #ef4444;
+}
+
+/* ── Appointment Blocks ── */
+
+.aptBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: transform 0.1s, box-shadow 0.1s;
+  border-left: 3px solid;
+}
+
+.aptBlock:hover {
+  transform: scale(1.03);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  z-index: 5;
+  position: relative;
+}
+
+.aptTime {
+  opacity: 0.7;
+  font-weight: 500;
+  font-size: 0.65rem;
+}
+
+.aptLabel {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Status color variants */
+.apt_confirmed {
+  background: #d1fae5;
+  color: #065f46;
+  border-left-color: #10b981;
+}
+
+.apt_pending {
+  background: #fef3c7;
+  color: #92400e;
+  border-left-color: #f59e0b;
+}
+
+.apt_completed {
+  background: #dbeafe;
+  color: #1e40af;
+  border-left-color: #3b82f6;
+}
+
+.apt_cancelled {
+  background: #fee2e2;
+  color: #991b1b;
+  border-left-color: #ef4444;
+}
+
+/* ══════════════════════════════════════════════
+   MONTH VIEW
+   ══════════════════════════════════════════════ */
+
+.monthGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.monthDayHeader {
+  background: #f8fafc;
+  border-bottom: 2px solid #e2e8f0;
+  border-right: 1px solid #f1f5f9;
+  padding: 0.6rem 0;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.monthDayHeader:last-child {
+  border-right: none;
+}
+
+.monthCell {
+  min-height: 110px;
+  border-bottom: 1px solid #f1f5f9;
+  border-right: 1px solid #f1f5f9;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: background 0.12s;
+}
+
+.monthCell:hover {
+  background: #f0f9ff;
+}
+
+.monthCellToday {
+  background: #eff6ff;
+}
+
+.monthCellEmpty {
+  background: #fafbfc;
+  border-bottom: 1px solid #f1f5f9;
+  border-right: 1px solid #f1f5f9;
+  min-height: 110px;
+}
+
+.monthDate {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-bottom: 2px;
+}
+
+.monthDateToday {
+  background: var(--primary-color);
+  color: white;
+}
+
+.monthApts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.monthAptDot {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s;
+  border-left: 3px solid;
+}
+
+.monthAptDot:hover {
+  transform: scale(1.03);
+}
+
+.monthMore {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  padding-left: 6px;
+}
+
+/* ══════════════════════════════════════════════
+   POPOVER
+   ══════════════════════════════════════════════ */
+
+.popover {
+  position: fixed;
+  z-index: 200;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.06);
+  min-width: 240px;
+  transform: translateX(-50%);
+  animation: popIn 0.2s ease-out;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.popoverHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: var(--primary-color);
+  font-size: 0.8rem;
+}
+
+.popoverBody {
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.popoverRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #374151;
+}
+
+.popoverRow svg {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .weekGrid {
+    grid-template-columns: 50px repeat(5, 1fr);
+  }
+
+  .weekGridWrapper {
+    max-height: 560px;
+  }
+
+  .dayNumber {
+    font-size: 1rem;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem 0.75rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .doctorSelect select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navGroup {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .rangeLabel {
+    font-size: 0.9rem;
+    margin-left: 0;
+    order: -1;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Week view: make it horizontally scrollable */
+  .weekGridWrapper {
+    overflow: auto;
+    max-height: 520px;
+  }
+
+  .weekGrid {
+    grid-template-columns: 45px repeat(5, minmax(80px, 1fr));
+    font-size: 0.8rem;
+  }
+
+  .dayLabel {
+    font-size: 0.6rem;
+  }
+
+  .dayNumber {
+    font-size: 0.85rem;
+    width: 26px;
+    height: 26px;
+  }
+
+  .aptBlock {
+    font-size: 0.6rem;
+    padding: 1px 3px;
+    gap: 0.2rem;
+  }
+
+  .aptTime {
+    display: none;
+  }
+
+  /* Month view */
+  .monthCell {
+    min-height: 70px;
+    padding: 3px 4px;
+  }
+
+  .monthAptDot {
+    font-size: 0.55rem;
+    padding: 1px 3px;
+  }
+}

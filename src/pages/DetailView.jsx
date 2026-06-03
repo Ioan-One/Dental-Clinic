@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Clock, FileText, User } from 'lucide-react';
 import { useData } from '../store/DataStore';
+import { useAuth } from '../store/AuthContext';
+import { fetchWithAuth } from '../utils/fetchWithAuth';
 import Modal from '../components/Modal';
 import Badge from '../components/Badge';
 import styles from './DetailView.module.css';
+
+const API_BASE = import.meta.env.VITE_API_URL || '';
 
 const TOOTH_NAMES = {
   1: 'Molar de Minte (M3)', 2: 'Molarul 2 (M2)', 3: 'Molarul 1 (M1)', 4: 'Premolarul 2 (P2)', 5: 'Premolarul 1 (P1)', 6: 'Canin (C)', 7: 'Incisiv Lateral (IL)', 8: 'Incisiv Central (IC)',
@@ -14,15 +18,12 @@ const TOOTH_NAMES = {
 };
 
 const STATUS_MAP = {
+  HEALTHY: 'Sănătos',
+  WATCH: 'Sub Observație',
+  CRITICAL: 'Critic',
   healthy: 'Sănătos',
   watch: 'Sub Observație',
   critical: 'Critic'
-};
-
-const TOOTH_NOTES = {
-  healthy: 'Dintele este perfect sănătos. Fără semne de carie sau degradare vizibilă.',
-  watch: 'Atenție: Observați o mică demineralizare pe suprafața ocluzală. De urmărit la următoarea vizită.',
-  critical: 'Caries profundă care necesită tratament de canal urgent. Posibilă infecție la rădăcină.'
 };
 
 const TOOTH_POSITIONS = {
@@ -42,7 +43,6 @@ const TOOTH_POSITIONS = {
   14: { left: '75%', top: '28%' },
   15: { left: '78%', top: '35%' },
   16: { left: '78%', top: '44%' },
-  
   17: { left: '76%', top: '53%' },
   18: { left: '76%', top: '62%' },
   19: { left: '73%', top: '70%' },
@@ -64,8 +64,84 @@ const TOOTH_POSITIONS = {
 export default function DetailView() {
   const { id } = useParams();
   const { getPatientById } = useData();
-  const patient = getPatientById(id);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const isPatient = user?.role === 'patient';
+
+  // Patients can only view their own dental map
+  useEffect(() => {
+    if (user?.role === 'patient' && user?.patientId && parseInt(id) !== user.patientId) {
+      navigate(`/patient/${user.patientId}`, { replace: true });
+    }
+  }, [user, id, navigate]);
+
+  const [patient, setPatient] = useState(null);
+  const [teethData, setTeethData] = useState({});
+  const [teethRecords, setTeethRecords] = useState([]);
   const [selectedTooth, setSelectedTooth] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPatientData = async () => {
+      setLoading(true);
+      try {
+        // Try fetching from API by patient ID
+        const patientRes = await fetchWithAuth(`${API_BASE}/api/patients/${id}`);
+        if (patientRes.ok) {
+          const patientData = await patientRes.json();
+          setPatient({
+            id: patientData.id,
+            name: `${patientData.firstName} ${patientData.lastName}`,
+            lastVisit: patientData.updatedAt ? new Date(patientData.updatedAt).toLocaleDateString() : 'N/A',
+          });
+
+          // Fetch teeth data
+          const teethRes = await fetchWithAuth(`${API_BASE}/api/teeth/patient/${patientData.id}`);
+          if (teethRes.ok) {
+            const records = await teethRes.json();
+            setTeethRecords(records);
+            // Build teeth status map
+            const teeth = {};
+            records.forEach(r => {
+              teeth[r.toothNumber] = r.status.toLowerCase();
+            });
+            setTeethData(teeth);
+          }
+        } else {
+          // Fallback to local data
+          const localPatient = getPatientById(id);
+          if (localPatient) {
+            setPatient({
+              id: localPatient.id,
+              name: `${localPatient.firstName} ${localPatient.lastName}`,
+              lastVisit: localPatient.updatedAt ? new Date(localPatient.updatedAt).toLocaleDateString() : 'N/A',
+            });
+          }
+        }
+      } catch (e) {
+        // Fallback to local data
+        const localPatient = getPatientById(id);
+        if (localPatient) {
+          setPatient({
+            id: localPatient.id,
+            name: `${localPatient.firstName} ${localPatient.lastName}`,
+            lastVisit: 'N/A',
+          });
+        }
+      }
+      setLoading(false);
+    };
+
+    fetchPatientData();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className={styles.container}>
+        <p>Se încarcă datele pacientului...</p>
+      </div>
+    );
+  }
 
   if (!patient) {
     return (
@@ -79,7 +155,7 @@ export default function DetailView() {
   }
 
   const getToothClass = (num) => {
-    const status = patient.teeth[num] || 'healthy';
+    const status = teethData[num] || 'healthy';
     return `${styles.toothDot} ${styles[status]}`;
   };
 
@@ -87,8 +163,11 @@ export default function DetailView() {
     setSelectedTooth(num);
   };
 
-  const toothStatus = selectedTooth ? (patient.teeth[selectedTooth] || 'healthy') : 'healthy';
-  const notesLength = TOOTH_NOTES[toothStatus].length;
+  const toothStatus = selectedTooth ? (teethData[selectedTooth] || 'healthy') : 'healthy';
+  const selectedRecord = selectedTooth ? teethRecords.find(r => r.toothNumber === selectedTooth) : null;
+  const toothNotes = selectedRecord?.notes || '';
+  const toothHistory = selectedRecord?.history || [];
+  const notesLength = toothNotes.length;
 
   return (
     <div className={styles.container}>
@@ -161,7 +240,7 @@ export default function DetailView() {
           <div className={styles.toothModalContent}>
             <div className={styles.toothStatusRow}>
               <Badge type={toothStatus === 'healthy' ? 'success' : (toothStatus === 'watch' ? 'warning' : 'danger')}>
-                {STATUS_MAP[toothStatus].toUpperCase()}
+                {(STATUS_MAP[toothStatus] || toothStatus).toUpperCase()}
               </Badge>
               <span className={styles.lastVisit}><Clock size={15}/> Ultima Vizită: {patient.lastVisit}</span>
             </div>
@@ -170,23 +249,43 @@ export default function DetailView() {
               <div className={styles.sectionTitle}><FileText size={18}/> Istoric Tratamente</div>
               <div className={styles.historyBox}>
                 <ul>
-                  <li>Control de Rutină - {patient.lastVisit}</li>
+                  {toothHistory.length > 0 ? (
+                    toothHistory.map((h, i) => (
+                      <li key={i}>
+                        {h.procedure} - {new Date(h.date).toLocaleDateString()}
+                        {h.doctor && ` (Dr. ${h.doctor.lastName})`}
+                      </li>
+                    ))
+                  ) : (
+                    <li>Niciun tratament înregistrat</li>
+                  )}
                 </ul>
               </div>
             </div>
 
             <div className={styles.notesSection}>
-              <div className={styles.sectionTitle}><User size={18}/> Anotări Medic <span>(Max 500 caractere)</span></div>
-              <textarea 
-                className={styles.notesArea} 
-                placeholder="Adaugă notițe..." 
-                defaultValue={TOOTH_NOTES[toothStatus]}
-              />
-              <span className={styles.characterCount}>{notesLength} / 500 caractere</span>
+              <div className={styles.sectionTitle}>
+                <User size={18}/> Anotări Medic 
+                {!isPatient && <span>(Max 500 caractere)</span>}
+              </div>
+              {isPatient ? (
+                <div className={styles.readOnlyNotes} style={{ padding: '10px', backgroundColor: 'var(--surface-color)', borderRadius: '8px', minHeight: '60px', marginTop: '10px' }}>
+                  {toothNotes ? toothNotes : <span style={{ color: '#888', fontStyle: 'italic' }}>Nu există notițe înregistrate pentru acest dinte.</span>}
+                </div>
+              ) : (
+                <>
+                  <textarea 
+                    className={styles.notesArea} 
+                    placeholder="Adaugă notițe..." 
+                    defaultValue={toothNotes}
+                  />
+                  <span className={styles.characterCount}>{notesLength} / 500 caractere</span>
+                </>
+              )}
             </div>
             
             <div className={styles.toothActions}>
-              <button className="btn btn-primary" onClick={() => setSelectedTooth(null)}>Adaugă Tratament</button>
+              {!isPatient && <button className="btn btn-primary" onClick={() => setSelectedTooth(null)}>Adaugă Tratament</button>}
               <button className="btn btn-outline" onClick={() => setSelectedTooth(null)}>Vezi Radiografii</button>
             </div>
           </div>

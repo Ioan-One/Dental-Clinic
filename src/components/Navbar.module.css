@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 4rem;
+  padding: 1rem 4rem;
   background-color: var(--surface-color);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
@@ -14,7 +14,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #1e3a8a; /* Deep blue from design */
+  text-decoration: none;
+  flex-shrink: 0;
 }
 
 .icon {
@@ -22,32 +23,200 @@
 }
 
 .brand {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #0f172a;
 }
 
+/* ── Centre nav links ── */
 .navLinks {
   display: flex;
-  gap: 2.5rem;
+  align-items: center;
+  gap: 0.25rem;
 }
 
-.navLinks a {
-  color: var(--text-secondary);
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-weight: 500;
-  transition: color 0.2s ease;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
 }
 
-.navLinks a:hover {
+.navItem:hover {
+  background: #f1f5f9;
   color: var(--primary-color);
 }
 
-.appointmentLink {
-  color: var(--primary-color) !important;
-  font-weight: 600 !important;
+.navItemActive {
+  background: #eff6ff;
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
+/* ── Right-side actions ── */
 .actions {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+}
+
+.userMenu {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.userName {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Role badges */
+.roleBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badgeAdmin {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badgeDoctor {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.badgeAssistant {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badgePatient {
+  background: #f3e8ff;
+  color: #6b21a8;
+}
+
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.85rem;
+  background: transparent;
+  border: 1.5px solid #e5e7eb;
+  color: #6b7280;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.logoutBtn:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: #fef2f2;
+}
+
+/* ── Mobile ── */
+.mobileNav {
+  display: none;
+}
+
+.hamburger {
+  background: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.4rem 0.5rem;
+  cursor: pointer;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  transition: background 0.15s;
+}
+
+.hamburger:hover {
+  background: #f3f4f6;
+}
+
+/* Full-screen overlay */
+.drawer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawerInner {
+  background: white;
+  padding: 1.25rem 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+.drawerUser {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  padding: 0.5rem 0 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 0.25rem;
+}
+
+.drawerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.drawerLogout {
+  margin-top: 0.75rem;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.25rem;
+  }
+  .navLinks {
+    display: none;
+  }
+  .actions {
+    display: none;
+  }
+  .mobileNav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
 }

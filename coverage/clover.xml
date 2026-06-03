@@ -1,245 +1,394 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1777393196039" clover="3.2.0">
-  <project timestamp="1777393196039" name="All files">
-    <metrics statements="195" coveredstatements="133" conditionals="122" coveredconditionals="68" methods="68" coveredmethods="40" elements="385" coveredelements="241" complexity="0" loc="195" ncloc="195" packages="5" files="10" classes="10"/>
-    <package name="components">
-      <metrics statements="27" coveredstatements="20" conditionals="31" coveredconditionals="18" methods="9" coveredmethods="7"/>
-      <file name="Badge.jsx" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/src/components/Badge.jsx">
-        <metrics statements="13" coveredstatements="8" conditionals="12" coveredconditionals="6" methods="1" coveredmethods="1"/>
-        <line num="2" count="30" type="stmt"/>
-        <line num="3" count="30" type="stmt"/>
-        <line num="5" count="30" type="cond" truecount="5" falsecount="6"/>
-        <line num="8" count="18" type="stmt"/>
-        <line num="9" count="18" type="stmt"/>
+<coverage generated="1778536203885" clover="3.2.0">
+  <project timestamp="1778536203885" name="All files">
+    <metrics statements="335" coveredstatements="256" conditionals="145" coveredconditionals="122" methods="42" coveredmethods="31" elements="522" coveredelements="409" complexity="0" loc="335" ncloc="335" packages="5" files="13" classes="13"/>
+    <package name="server">
+      <metrics statements="26" coveredstatements="14" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="1"/>
+      <file name="app.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/server/app.js">
+        <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+      </file>
+      <file name="server.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/server/server.js">
+        <metrics statements="6" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="17" count="12" type="stmt"/>
-        <line num="18" count="12" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="28" count="30" type="stmt"/>
       </file>
-      <file name="Modal.jsx" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/src/components/Modal.jsx">
-        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="5" count="6" type="cond" truecount="2" falsecount="0"/>
-        <line num="7" count="3" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-      </file>
-      <file name="Modal.module.css" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/src/components/Modal.module.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-      <file name="Table.jsx" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/src/components/Table.jsx">
-        <metrics statements="11" coveredstatements="9" conditionals="17" coveredconditionals="10" methods="6" coveredmethods="4"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="10" count="6" type="stmt"/>
-        <line num="15" count="6" type="stmt"/>
-        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="19" count="6" type="stmt"/>
-        <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="23" count="6" type="stmt"/>
-        <line num="29" count="42" type="stmt"/>
-        <line num="37" count="30" type="stmt"/>
-        <line num="39" count="210" type="stmt"/>
-      </file>
-      <file name="Table.module.css" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/src/components/Table.module.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="websocket.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/server/websocket.js">
+        <metrics statements="9" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
       </file>
     </package>
-    <package name="pages">
-      <metrics statements="59" coveredstatements="39" conditionals="29" coveredconditionals="19" methods="29" coveredmethods="13"/>
-      <file name="MasterView.jsx" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/src/pages/MasterView.jsx">
-        <metrics statements="59" coveredstatements="39" conditionals="29" coveredconditionals="19" methods="29" coveredmethods="13"/>
-        <line num="13" count="6" type="stmt"/>
-        <line num="14" count="6" type="stmt"/>
-        <line num="16" count="6" type="stmt"/>
-        <line num="17" count="6" type="stmt"/>
-        <line num="18" count="6" type="stmt"/>
-        <line num="21" count="6" type="stmt"/>
-        <line num="23" count="6" type="cond" truecount="1" falsecount="0"/>
-        <line num="24" count="2" type="stmt"/>
-        <line num="25" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="29" count="2" type="stmt"/>
-        <line num="30" count="2" type="stmt"/>
-        <line num="32" count="2" type="stmt"/>
-        <line num="35" count="6" type="stmt"/>
-        <line num="37" count="6" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="41" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="42" count="1" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="46" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="54" count="6" type="stmt"/>
-        <line num="55" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="60" count="6" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="64" count="6" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
-        <line num="68" count="6" type="stmt"/>
-        <line num="69" count="30" type="stmt"/>
-        <line num="73" count="30" type="stmt"/>
-        <line num="81" count="30" type="cond" truecount="1" falsecount="1"/>
-        <line num="87" count="30" type="stmt"/>
-        <line num="91" count="6" type="stmt"/>
-        <line num="92" count="30" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
-        <line num="96" count="0" type="stmt"/>
-        <line num="99" count="0" type="stmt"/>
-        <line num="106" count="6" type="stmt"/>
-        <line num="107" count="3" type="stmt"/>
-        <line num="108" count="3" type="stmt"/>
-        <line num="109" count="21" type="cond" truecount="1" falsecount="1"/>
-        <line num="111" count="12" type="stmt"/>
-        <line num="114" count="12" type="stmt"/>
-        <line num="117" count="6" type="stmt"/>
-        <line num="119" count="6" type="stmt"/>
-        <line num="140" count="2" type="stmt"/>
-        <line num="170" count="18" type="stmt"/>
-        <line num="191" count="0" type="stmt"/>
-        <line num="202" count="0" type="stmt"/>
-        <line num="211" count="0" type="stmt"/>
-        <line num="227" count="0" type="stmt"/>
-        <line num="236" count="0" type="stmt"/>
-        <line num="247" count="0" type="stmt"/>
-        <line num="262" count="0" type="stmt"/>
-      </file>
-      <file name="MasterView.module.css" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/src/pages/MasterView.module.css">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-    </package>
-    <package name="services">
-      <metrics statements="17" coveredstatements="17" conditionals="24" coveredconditionals="24" methods="1" coveredmethods="1"/>
-      <file name="ValidationService.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/src/services/ValidationService.js">
-        <metrics statements="17" coveredstatements="17" conditionals="24" coveredconditionals="24" methods="1" coveredmethods="1"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="5" type="stmt"/>
-        <line num="4" count="5" type="cond" truecount="4" falsecount="0"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="8" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="5" type="stmt"/>
-        <line num="10" count="5" type="cond" truecount="6" falsecount="0"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="14" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="18" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="2" type="stmt"/>
-        <line num="22" count="5" type="cond" truecount="4" falsecount="0"/>
-        <line num="23" count="2" type="stmt"/>
-        <line num="26" count="5" type="cond" truecount="4" falsecount="0"/>
-        <line num="27" count="2" type="stmt"/>
-        <line num="30" count="5" type="stmt"/>
-      </file>
-    </package>
-    <package name="store">
-      <metrics statements="90" coveredstatements="55" conditionals="38" coveredconditionals="7" methods="29" coveredmethods="19"/>
-      <file name="DataStore.jsx" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/src/store/DataStore.jsx">
-        <metrics statements="90" coveredstatements="55" conditionals="38" coveredconditionals="7" methods="29" coveredmethods="19"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="10" count="7" type="stmt"/>
-        <line num="11" count="7" type="stmt"/>
-        <line num="12" count="7" type="cond" truecount="0" falsecount="2"/>
-        <line num="14" count="7" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="19" count="10" type="stmt"/>
-        <line num="22" count="2" type="stmt"/>
-        <line num="23" count="10" type="stmt"/>
-        <line num="24" count="10" type="stmt"/>
-        <line num="25" count="10" type="cond" truecount="1" falsecount="1"/>
-        <line num="27" count="10" type="stmt"/>
-        <line num="28" count="10" type="stmt"/>
-        <line num="31" count="10" type="stmt"/>
-        <line num="32" count="7" type="cond" truecount="1" falsecount="1"/>
-        <line num="34" count="7" type="stmt"/>
-        <line num="35" count="7" type="stmt"/>
-        <line num="37" count="7" type="stmt"/>
-        <line num="38" count="7" type="stmt"/>
-        <line num="40" count="7" type="stmt"/>
-        <line num="43" count="7" type="stmt"/>
-        <line num="44" count="7" type="stmt"/>
-        <line num="45" count="7" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="48" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="58" count="7" type="stmt"/>
-        <line num="59" count="7" type="stmt"/>
-        <line num="60" count="7" type="stmt"/>
-        <line num="61" count="7" type="cond" truecount="1" falsecount="1"/>
-        <line num="65" count="10" type="stmt"/>
-        <line num="66" count="7" type="stmt"/>
-        <line num="67" count="7" type="stmt"/>
-        <line num="68" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="69" count="0" type="stmt"/>
-        <line num="70" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="73" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
+    <package name="server.routes">
+      <metrics statements="281" coveredstatements="220" conditionals="135" coveredconditionals="117" methods="28" coveredmethods="25"/>
+      <file name="appointments.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/server/routes/appointments.js">
+        <metrics statements="87" coveredstatements="77" conditionals="63" coveredconditionals="59" methods="6" coveredmethods="6"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="10" type="stmt"/>
+        <line num="9" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="10" type="stmt"/>
+        <line num="12" count="10" type="stmt"/>
+        <line num="13" count="10" type="stmt"/>
+        <line num="14" count="10" type="stmt"/>
+        <line num="15" count="10" type="stmt"/>
+        <line num="16" count="10" type="stmt"/>
+        <line num="17" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="10" type="stmt"/>
+        <line num="22" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="26" count="10" type="cond" truecount="4" falsecount="0"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="29" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="32" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="36" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="40" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="48" count="10" type="stmt"/>
+        <line num="67" count="41" type="stmt"/>
         <line num="82" count="10" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="98" count="5" type="stmt"/>
+        <line num="99" count="3" type="stmt"/>
+        <line num="100" count="3" type="stmt"/>
+        <line num="108" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="109" count="2" type="stmt"/>
+        <line num="112" count="1" type="stmt"/>
+        <line num="127" count="0" type="stmt"/>
+        <line num="128" count="0" type="stmt"/>
+        <line num="133" count="5" type="stmt"/>
+        <line num="134" count="137" type="stmt"/>
+        <line num="135" count="137" type="stmt"/>
+        <line num="138" count="137" type="cond" truecount="7" falsecount="0"/>
+        <line num="139" count="2" type="stmt"/>
+        <line num="143" count="135" type="stmt"/>
+        <line num="144" count="135" type="stmt"/>
+        <line num="145" count="135" type="stmt"/>
+        <line num="146" count="135" type="cond" truecount="2" falsecount="0"/>
+        <line num="147" count="1" type="stmt"/>
+        <line num="151" count="134" type="stmt"/>
+        <line num="152" count="134" type="cond" truecount="4" falsecount="0"/>
+        <line num="153" count="2" type="stmt"/>
+        <line num="157" count="132" type="stmt"/>
+        <line num="160" count="132" type="cond" truecount="2" falsecount="0"/>
+        <line num="161" count="2" type="stmt"/>
+        <line num="165" count="130" type="stmt"/>
+        <line num="168" count="130" type="cond" truecount="2" falsecount="0"/>
+        <line num="169" count="1" type="stmt"/>
+        <line num="172" count="129" type="stmt"/>
+        <line num="188" count="129" type="stmt"/>
+        <line num="203" count="0" type="stmt"/>
+        <line num="204" count="0" type="stmt"/>
+        <line num="209" count="5" type="stmt"/>
+        <line num="210" count="5" type="stmt"/>
+        <line num="211" count="5" type="stmt"/>
+        <line num="215" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="216" count="2" type="stmt"/>
+        <line num="219" count="3" type="stmt"/>
+        <line num="220" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="221" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="222" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="223" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="224" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="225" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="226" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="228" count="3" type="stmt"/>
+        <line num="237" count="3" type="stmt"/>
+        <line num="252" count="0" type="stmt"/>
+        <line num="253" count="0" type="stmt"/>
+        <line num="258" count="5" type="stmt"/>
+        <line num="259" count="9" type="stmt"/>
+        <line num="260" count="9" type="stmt"/>
+        <line num="264" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="265" count="2" type="stmt"/>
+        <line num="268" count="7" type="stmt"/>
+        <line num="276" count="7" type="stmt"/>
+        <line num="278" count="0" type="stmt"/>
+        <line num="279" count="0" type="stmt"/>
+      </file>
+      <file name="doctors.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/server/routes/doctors.js">
+        <metrics statements="37" coveredstatements="31" conditionals="17" coveredconditionals="15" methods="5" coveredmethods="5"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="26" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="34" count="5" type="stmt"/>
+        <line num="35" count="19" type="stmt"/>
+        <line num="36" count="19" type="stmt"/>
+        <line num="37" count="19" type="cond" truecount="7" falsecount="0"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="40" count="17" type="stmt"/>
+        <line num="43" count="16" type="stmt"/>
+        <line num="45" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="51" count="5" type="stmt"/>
+        <line num="52" count="4" type="stmt"/>
+        <line num="53" count="4" type="stmt"/>
+        <line num="56" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="57" count="3" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="63" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="69" count="5" type="stmt"/>
+        <line num="70" count="8" type="stmt"/>
+        <line num="71" count="8" type="stmt"/>
+        <line num="74" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="75" count="6" type="stmt"/>
+        <line num="79" count="6" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+      </file>
+      <file name="generate.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/server/routes/generate.js">
+        <metrics statements="29" coveredstatements="4" conditionals="8" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="73" count="5" type="stmt"/>
+        <line num="74" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+      </file>
+      <file name="patients.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/server/routes/patients.js">
+        <metrics statements="56" coveredstatements="46" conditionals="26" coveredconditionals="23" methods="5" coveredmethods="5"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="10" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+        <line num="23" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="32" count="9" type="stmt"/>
+        <line num="33" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="34" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="36" count="9" type="stmt"/>
+        <line num="46" count="9" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="62" count="5" type="stmt"/>
+        <line num="63" count="5" type="stmt"/>
+        <line num="64" count="5" type="stmt"/>
+        <line num="76" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="77" count="2" type="stmt"/>
+        <line num="80" count="3" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
-        <line num="84" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="86" count="0" type="stmt"/>
+        <line num="88" count="5" type="stmt"/>
+        <line num="89" count="140" type="stmt"/>
+        <line num="90" count="140" type="stmt"/>
+        <line num="99" count="139" type="stmt"/>
+        <line num="102" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="103" count="1" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="111" count="5" type="stmt"/>
+        <line num="112" count="4" type="stmt"/>
+        <line num="113" count="4" type="stmt"/>
+        <line num="117" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="118" count="1" type="stmt"/>
+        <line num="121" count="3" type="stmt"/>
+        <line num="131" count="2" type="stmt"/>
+        <line num="133" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="134" count="1" type="stmt"/>
+        <line num="136" count="0" type="stmt"/>
+        <line num="137" count="0" type="stmt"/>
+        <line num="142" count="5" type="stmt"/>
+        <line num="143" count="11" type="stmt"/>
+        <line num="144" count="11" type="stmt"/>
+        <line num="148" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="149" count="2" type="stmt"/>
+        <line num="152" count="9" type="stmt"/>
+        <line num="161" count="9" type="stmt"/>
+        <line num="169" count="9" type="stmt"/>
+        <line num="171" count="0" type="stmt"/>
+        <line num="172" count="0" type="stmt"/>
+      </file>
+      <file name="statistics.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/server/routes/statistics.js">
+        <metrics statements="22" coveredstatements="20" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="4"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="19" type="stmt"/>
+        <line num="10" count="19" type="stmt"/>
+        <line num="11" count="19" type="stmt"/>
+        <line num="12" count="19" type="stmt"/>
+        <line num="15" count="19" type="stmt"/>
+        <line num="17" count="19" type="stmt"/>
+        <line num="24" count="19" type="stmt"/>
+        <line num="25" count="19" type="stmt"/>
+        <line num="26" count="9" type="stmt"/>
+        <line num="30" count="19" type="stmt"/>
+        <line num="36" count="19" type="stmt"/>
+        <line num="37" count="19" type="stmt"/>
+        <line num="38" count="7" type="stmt"/>
+        <line num="42" count="19" type="stmt"/>
+        <line num="49" count="19" type="stmt"/>
+        <line num="51" count="7" type="stmt"/>
+        <line num="52" count="7" type="stmt"/>
+        <line num="60" count="19" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+      </file>
+      <file name="teeth.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/server/routes/teeth.js">
+        <metrics statements="50" coveredstatements="42" conditionals="19" coveredconditionals="19" methods="5" coveredmethods="5"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="24" type="stmt"/>
+        <line num="11" count="24" type="stmt"/>
+        <line num="14" count="24" type="stmt"/>
+        <line num="15" count="24" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="23" type="stmt"/>
+        <line num="20" count="23" type="stmt"/>
+        <line num="21" count="736" type="stmt"/>
+        <line num="24" count="23" type="stmt"/>
+        <line num="26" count="23" type="stmt"/>
+        <line num="31" count="23" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="39" count="5" type="stmt"/>
+        <line num="40" count="19" type="stmt"/>
+        <line num="41" count="19" type="stmt"/>
+        <line num="42" count="19" type="stmt"/>
+        <line num="54" count="19" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="62" count="5" type="stmt"/>
+        <line num="63" count="8" type="stmt"/>
+        <line num="64" count="8" type="stmt"/>
+        <line num="65" count="8" type="cond" truecount="5" falsecount="0"/>
+        <line num="66" count="3" type="stmt"/>
+        <line num="69" count="5" type="stmt"/>
+        <line num="72" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="74" count="4" type="stmt"/>
+        <line num="86" count="4" type="stmt"/>
         <line num="88" count="0" type="stmt"/>
         <line num="89" count="0" type="stmt"/>
-        <line num="90" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="96" count="0" type="stmt"/>
-        <line num="100" count="0" type="stmt"/>
-        <line num="101" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="102" count="0" type="stmt"/>
-        <line num="106" count="10" type="stmt"/>
-        <line num="107" count="0" type="stmt"/>
-        <line num="108" count="0" type="stmt"/>
-        <line num="109" count="0" type="stmt"/>
+        <line num="94" count="5" type="stmt"/>
+        <line num="95" count="4" type="stmt"/>
+        <line num="96" count="4" type="stmt"/>
+        <line num="107" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="108" count="3" type="stmt"/>
         <line num="110" count="0" type="stmt"/>
-        <line num="113" count="10" type="stmt"/>
-        <line num="114" count="1" type="stmt"/>
-        <line num="115" count="1" type="stmt"/>
-        <line num="117" count="1" type="stmt"/>
-        <line num="119" count="1" type="stmt"/>
-        <line num="120" count="1" type="stmt"/>
-        <line num="125" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="126" count="0" type="stmt"/>
-        <line num="127" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="129" count="0" type="stmt"/>
-        <line num="133" count="10" type="stmt"/>
-        <line num="134" count="7" type="cond" truecount="2" falsecount="0"/>
-        <line num="136" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="138" count="1" type="stmt"/>
-        <line num="139" count="1" type="stmt"/>
-        <line num="144" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="146" count="0" type="stmt"/>
-        <line num="150" count="10" type="stmt"/>
-        <line num="151" count="7" type="stmt"/>
-        <line num="153" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="155" count="1" type="stmt"/>
-        <line num="156" count="1" type="stmt"/>
-        <line num="159" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="161" count="0" type="stmt"/>
-        <line num="165" count="10" type="stmt"/>
-        <line num="166" count="10" type="stmt"/>
-        <line num="168" count="10" type="stmt"/>
-        <line num="178" count="13" type="stmt"/>
+        <line num="115" count="5" type="stmt"/>
+        <line num="116" count="5" type="stmt"/>
+        <line num="117" count="5" type="stmt"/>
+        <line num="120" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="122" count="4" type="stmt"/>
+        <line num="123" count="4" type="stmt"/>
+        <line num="124" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="125" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="127" count="4" type="stmt"/>
+        <line num="131" count="4" type="stmt"/>
+        <line num="133" count="0" type="stmt"/>
       </file>
     </package>
-    <package name="utils">
-      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="mockData.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/src/utils/mockData.js">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
+    <package name="server.store">
+      <metrics statements="13" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="0"/>
+      <file name="db.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/server/store/db.js">
+        <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="10" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
+      </file>
+      <file name="memory.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/server/store/memory.js">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="server.tests">
+      <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+      <file name="helpers.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/server/tests/helpers.js">
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+        <line num="8" count="138" type="stmt"/>
+        <line num="9" count="138" type="stmt"/>
+        <line num="10" count="138" type="stmt"/>
+        <line num="11" count="138" type="stmt"/>
+        <line num="12" count="138" type="stmt"/>
+        <line num="19" count="114" type="stmt"/>
+        <line num="35" count="85" type="stmt"/>
+        <line num="50" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="server.validators">
+      <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="patientValidator.js" path="/Users/ioan-one/Documents/Detal Clinic(MPP)/dental-clinic-app/server/validators/patientValidator.js">
+        <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="149" type="stmt"/>
+        <line num="12" count="149" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="15" count="144" type="stmt"/>
+        <line num="16" count="144" type="stmt"/>
       </file>
     </package>
   </project>

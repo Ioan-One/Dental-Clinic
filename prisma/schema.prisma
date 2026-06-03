@@ -1,0 +1,218 @@
+// Prisma schema for Dental Clinic — 3NF Relational Design
+// Run: npx prisma migrate dev --name init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Patient ────────────────────────────────────────────────
+model Patient {
+  id        Int      @id @default(autoincrement())
+  firstName String   @db.VarChar(100)
+  lastName  String   @db.VarChar(100)
+  email     String   @unique @db.VarChar(255)
+  phone     String   @db.VarChar(30)
+  isDeleted Boolean  @default(false) @map("is_deleted")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  // Optional link to a User account
+  userId Int? @unique @map("user_id")
+  user   User? @relation(fields: [userId], references: [id])
+
+  // Relations
+  appointments Appointment[]
+  toothRecords ToothRecord[]
+
+  @@map("patients")
+}
+
+// ─── Doctor ─────────────────────────────────────────────────
+model Doctor {
+  id             Int      @id @default(autoincrement())
+  firstName      String   @db.VarChar(100)
+  lastName       String   @db.VarChar(100)
+  email          String   @unique @db.VarChar(255)
+  phone          String   @db.VarChar(30)
+  specialization String   @db.VarChar(100)
+  isDeleted      Boolean  @default(false) @map("is_deleted")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  // Optional link to a User account
+  userId Int? @unique @map("user_id")
+  user   User? @relation(fields: [userId], references: [id])
+
+  // Relations
+  appointments  Appointment[]
+  toothHistory  ToothHistory[]
+
+  @@map("doctors")
+}
+
+// ─── Appointment ────────────────────────────────────────────
+model Appointment {
+  id        Int      @id @default(autoincrement())
+  date      DateTime @db.Date
+  time      String   @db.VarChar(5)  // "HH:MM"
+  type      String   @db.VarChar(100)
+  status    AppointmentStatus @default(PENDING)
+  notes     String?  @db.Text
+  isDeleted Boolean  @default(false) @map("is_deleted")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  // Soft-lock for slot booking (10-minute window)
+  lockedUntil DateTime? @map("locked_until")
+
+  // Foreign keys
+  patientId Int @map("patient_id")
+  doctorId  Int @map("doctor_id")
+
+  // Relations
+  patient Patient @relation(fields: [patientId], references: [id])
+  doctor  Doctor  @relation(fields: [doctorId], references: [id])
+
+  @@index([patientId])
+  @@index([doctorId])
+  @@index([date])
+  @@index([status])
+  @@map("appointments")
+}
+
+enum AppointmentStatus {
+  CONFIRMED
+  PENDING
+  COMPLETED
+  CANCELLED
+
+  @@map("appointment_status")
+}
+
+// ─── ToothRecord (current state of each tooth per patient) ──
+model ToothRecord {
+  id          Int         @id @default(autoincrement())
+  toothNumber Int         @map("tooth_number") // 1-32 universal numbering
+  status      ToothStatus @default(HEALTHY)
+  notes       String?     @db.VarChar(500)
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+
+  // Foreign key
+  patientId Int @map("patient_id")
+
+  // Relations
+  patient Patient       @relation(fields: [patientId], references: [id])
+  history ToothHistory[]
+
+  @@unique([patientId, toothNumber]) // One record per tooth per patient
+  @@index([patientId])
+  @@map("tooth_records")
+}
+
+enum ToothStatus {
+  HEALTHY
+  WATCH
+  CRITICAL
+
+  @@map("tooth_status")
+}
+
+// ─── User ────────────────────────────────────────────────────
+model User {
+  id        Int      @id @default(autoincrement())
+  firstName String   @db.VarChar(100)
+  lastName  String   @db.VarChar(100)
+  email     String   @unique @db.VarChar(255)
+  password  String   @db.VarChar(255)
+  isDeleted Boolean  @default(false) @map("is_deleted")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  refreshToken       String?   @unique @map("refresh_token")
+  refreshTokenExpiry DateTime? @map("refresh_token_expiry")
+  resetToken         String?   @unique @map("reset_token")
+  resetTokenExpiry   DateTime? @map("reset_token_expiry")
+  otpCode            String?   @map("otp_code")
+  otpExpiry          DateTime? @map("otp_expiry")
+  magicToken         String?   @unique @map("magic_token")
+  magicTokenExpiry   DateTime? @map("magic_token_expiry")
+
+  userRoles UserRole[]
+  doctor    Doctor?
+  patient   Patient?
+
+  @@map("users")
+}
+
+// ─── Role ─────────────────────────────────────────────────────
+model Role {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique @db.VarChar(50)
+  description String? @db.VarChar(255)
+
+  userRoles       UserRole[]
+  rolePermissions RolePermission[]
+
+  @@map("roles")
+}
+
+// ─── Permission ───────────────────────────────────────────────
+model Permission {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique @db.VarChar(100)
+  description String? @db.VarChar(255)
+
+  rolePermissions RolePermission[]
+
+  @@map("permissions")
+}
+
+// ─── UserRole (junction) ──────────────────────────────────────
+model UserRole {
+  userId Int @map("user_id")
+  roleId Int @map("role_id")
+
+  user User @relation(fields: [userId], references: [id])
+  role Role @relation(fields: [roleId], references: [id])
+
+  @@id([userId, roleId])
+  @@map("user_roles")
+}
+
+// ─── RolePermission (junction) ────────────────────────────────
+model RolePermission {
+  roleId       Int @map("role_id")
+  permissionId Int @map("permission_id")
+
+  role       Role       @relation(fields: [roleId], references: [id])
+  permission Permission @relation(fields: [permissionId], references: [id])
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+// ─── ToothHistory (procedure log per tooth) ─────────────────
+model ToothHistory {
+  id            Int      @id @default(autoincrement())
+  procedure     String   @db.VarChar(200) // e.g. "Filling", "Root Canal"
+  date          DateTime @db.Date
+  notes         String?  @db.Text
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  // Foreign keys
+  toothRecordId Int @map("tooth_record_id")
+  doctorId      Int @map("doctor_id")
+
+  // Relations
+  toothRecord ToothRecord @relation(fields: [toothRecordId], references: [id])
+  doctor      Doctor      @relation(fields: [doctorId], references: [id])
+
+  @@index([toothRecordId])
+  @@map("tooth_history")
+}
