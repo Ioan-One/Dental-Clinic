@@ -1,4 +1,5 @@
 const STORAGE_KEY = 'dental_auth_user';
+const API_BASE = import.meta.env.VITE_API_URL || '';
 
 const getAuthToken = () => {
   try {
@@ -18,7 +19,7 @@ let refreshPromise = null; // deduplicate concurrent refresh calls
 
 const tryRefresh = async () => {
   if (refreshPromise) return refreshPromise;
-  refreshPromise = fetch('/api/auth/refresh', { method: 'POST', credentials: 'include' })
+  refreshPromise = fetch(`${API_BASE}/api/auth/refresh`, { method: 'POST', credentials: 'include' })
     .then(async (r) => {
       if (!r.ok) throw new Error('refresh failed');
       const data = await r.json();
@@ -34,13 +35,14 @@ export const fetchWithAuth = async (url, options = {}, _retry = true) => {
   const headers = { ...options.headers };
   if (token) headers['Authorization'] = `Bearer ${token}`;
 
-  const res = await fetch(url, { ...options, headers, credentials: 'include' });
+  const fullUrl = url.startsWith('http') ? url : `${API_BASE}${url}`;
+  const res = await fetch(fullUrl, { ...options, headers, credentials: 'include' });
 
   if (res.status === 401 && _retry) {
     try {
       const newToken = await tryRefresh();
       headers['Authorization'] = `Bearer ${newToken}`;
-      return fetch(url, { ...options, headers, credentials: 'include' });
+      return fetch(fullUrl, { ...options, headers, credentials: 'include' });
     } catch {
       window.localStorage.removeItem(STORAGE_KEY);
       window.location.href = '/login';
