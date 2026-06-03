@@ -68,6 +68,7 @@ router.get('/', async (req, res) => {
 // GET patient by id
 router.get('/:id', async (req, res) => {
   const requestedId = parseInt(req.params.id);
+  try {
     const patient = await prisma.patient.findFirst({
       where: {
         id: requestedId,
