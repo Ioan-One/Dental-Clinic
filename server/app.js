@@ -23,14 +23,28 @@ app.use(helmet({
   contentSecurityPolicy: false, // CSP handled by the frontend build tool
 }));
 
-// Only allow requests from the Vite frontend (same host, port 5173)
-const FRONTEND_ORIGIN = process.env.FRONTEND_URL || process.env.FRONTEND_ORIGIN || /^https?:\/\/[^/]+:5173$/;
-// Also allow multiple origins if specified by comma
-let corsOrigin = FRONTEND_ORIGIN;
-if (typeof corsOrigin === 'string' && corsOrigin.includes(',')) {
-  corsOrigin = corsOrigin.split(',').map(o => o.trim());
-}
-app.use(cors({ origin: corsOrigin, credentials: true }));
+// Dynamic CORS configuration to allow Vercel previews, localhost, and explicitly set URLs
+app.use(cors({
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Allow any localhost, any vercel.app domain, or the explicitly configured FRONTEND_URL
+    if (
+      origin.includes('localhost') || 
+      origin.includes('127.0.0.1') || 
+      origin.endsWith('.vercel.app') ||
+      origin === process.env.FRONTEND_URL ||
+      origin === process.env.FRONTEND_ORIGIN
+    ) {
+      return callback(null, true);
+    }
+    
+    // Fallback block
+    callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true
+}));
 
 // Global rate limit — blunts JMeter / DDoS attacks
 const globalLimiter = rateLimit({
