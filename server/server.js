@@ -1,3 +1,4 @@
+import http from 'http';
 import https from 'https';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
@@ -8,16 +9,21 @@ import { wss } from './websocket.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const PORT = process.env.PORT || 3001;
+const isProd = process.env.NODE_ENV === 'production' || process.env.RENDER;
 
-const sslOptions = {
-  key:  fs.readFileSync(path.join(__dirname, 'certs/key.pem')),
-  cert: fs.readFileSync(path.join(__dirname, 'certs/cert.pem')),
-};
-
-const server = https.createServer(sslOptions, app);
+let server;
+if (isProd) {
+  server = http.createServer(app);
+} else {
+  const sslOptions = {
+    key:  fs.readFileSync(path.join(__dirname, 'certs/key.pem')),
+    cert: fs.readFileSync(path.join(__dirname, 'certs/cert.pem')),
+  };
+  server = https.createServer(sslOptions, app);
+}
 
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server listening on https://0.0.0.0:${PORT}`);
+  console.log(`Server listening on ${isProd ? 'http' : 'https'}://0.0.0.0:${PORT}`);
 });
 
 server.on('upgrade', (request, socket, head) => {
